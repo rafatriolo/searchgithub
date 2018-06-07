@@ -1,0 +1,51 @@
+<!doctype html>
+<html ng-app="usuario_github">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html">
+<title>InfoPrice - Test frontend</title>
+<link rel="stylesheet" type="text/css" media="all" href="css/styles.css">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.10/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.10/angular-resource.min.js"></script>
+<script src="usuarios.js"></script>
+<script src="usuariosCrtl.js"></script>
+<script src="usuariosSrv.js"></script>
+</head>
+<body>
+      <div id="w" ng-controller="usuarios_lista">
+            <div>
+                  <h1>Test frontend - InfoPrice</h1>
+                  <p>Enter a single Github username below and click the button to display profile info.</p>
+                  <form ng-submit="get(info)">
+                        <input type="text" id="ghusername" ng-model="info" placeholder="Github username...">
+                        <button type="submit" id="ghsubmitbtn">Search</button>
+                        <div id="ghapidata" class="clearfix"></div>
+                  </form>
+            </div>
+            <div ng-show="(Notfound)"><h2>No User Info Found</h2></div>
+            <div ng-show="(submitted)">
+                  <h2>{{results.name}}
+                        <span class="smallname">(@<a href="{{results.html_url}}" target="_blank">{{results.login}}</a>)</span>
+                  </h2>
+                  <div class="ghcontent">
+                        <div class="avi">
+                              <a href="{{results.html_url}}" target="_blank">
+                              <img src="{{results.avatar_url}}" width="80" height="80" alt="{{results.login}}"></a>
+                        </div>
+                        Followers: {{results.followers}} - Following: {{results.following}}<br>Repos: {{results.public_repos}}</p>
+                        </div>
+                        <div class="repolist clearfix">
+                        <p ng-show="results.public_repos == '0'">No repos!</p>
+                        <div ng-hide="results.public_repos == '0'">
+                              <p><strong>Repos List:</strong></p>
+                              <ul>
+                                    <li ng-repeat="x in repos">
+                                          <a href="{{x.html_url}}" target="_blank">{{x.name}}</a>
+                                    </li>
+                              </ul>
+                        </div>
+                  </div>
+            </div>
+      </div>
+</body>
+</html>
