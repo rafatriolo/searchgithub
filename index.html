@@ -22,6 +22,7 @@
                         <div id="ghapidata" class="clearfix"></div>
                   </form>
             </div>
+            <img ng-show="loading" src="css/loader.gif" />
             <div ng-show="(Notfound)"><h2>No User Info Found</h2></div>
             <div ng-show="(submitted)">
                   <h2>{{results.name}}
